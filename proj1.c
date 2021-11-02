@@ -37,11 +37,11 @@ void grid_setup()
     int x_start = (int) ceil(start[0]/tile_length);
     int y_start = (int) ceil(start[1]/tile_length);
     //manhattan_grid[y_start][x_start] = 98;
-    manhattan_grid[grid_width-y_start][x_start] = 98;
+    manhattan_grid[(grid_width-y_start)-2][x_start+1] = 98;
    
     int x_goal = (int) ceil(goal[0]/tile_length);
     int y_goal = (int) ceil(goal[1]/tile_length);
-    manhattan_grid[grid_width-y_goal][x_goal] = 0;
+    manhattan_grid[(grid_width-y_goal)-2][x_goal+1] = 0;
     printf("Start and goal set up.\n");
 
     // Set up obstacles
@@ -51,7 +51,7 @@ void grid_setup()
     for (k = 0; k < num_obstacles; k++) {
         x_obs = (int) ceil(obstacle[k][0]/tile_length);
         y_obs = (int) ceil(obstacle[k][1]/tile_length);
-        manhattan_grid[grid_width-y_obs][x_obs] = 99;
+        manhattan_grid[(grid_width-y_obs)-2][x_obs+1] = 99;
     }
     printf("Obstacles set up.\n");
 }
