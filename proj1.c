@@ -12,15 +12,13 @@ double obstacle[MAX_OBSTACLES][2] = /* obstacle locations */
 {-1,-1},{-1,-1},{-1,-1}};
 double start[2] = {0.305, 1.219}; /* start location */
 double goal[2] = {3.658, 1.829}; /* goal location */
+double tile_length = 0.305; /* length of tile */
+int manhattan_grid[13][19]; /* dimensions for grid */
+int grid_width = sizeof(manhattan_grid)/sizeof(manhattan_grid[0]);
+int grid_length = sizeof(manhattan_grid[0])/sizeof(manhattan_grid[0][0]);
 
-double tile_length = 0.305;
-int manhattan_grid[13][19];
-
-int main() {
-
-    int grid_width = sizeof(manhattan_grid)/sizeof(manhattan_grid[0]);
-    int grid_length = sizeof(manhattan_grid[0])/sizeof(manhattan_grid[0][0]);
-
+void grid_setup()
+{
     // Set up grid
     int y, x;
     for (y = 0; y < grid_width; y++) {
@@ -56,13 +54,22 @@ int main() {
         manhattan_grid[grid_width-y_obs][x_obs] = 99;
     }
     printf("Obstacles set up.\n");
+}
 
+void print_grid() 
+{
+    int y, x;
     for (y = 0; y < grid_width; y++) {
         for (x = 0; x < grid_length; x++) {
-            printf("\t%2d", manhattan_grid[y][x]);
+            printf("%3d ", manhattan_grid[y][x]);
         }
         printf("\n");
     }
+}
 
+int main() 
+{
+    grid_setup();
+    print_grid();
     return 0;
 }
